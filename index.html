@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tailwind and Alpine JS responsive navbar</title>
+  <script src="//cdn.tailwindcss.com"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
+</head>
+
+<body>
+ 
+  <nav class="px-4 w-full bg-indigo-900 flex justify-between flex-wrap items-center"
+    x-data="{ isOpen: false }"
+    @keydown.escape="isOpen = false"
+    @click.outside="isOpen = false"
+  >
+    <!-- Logo -->
+    <div>
+      <a class="text-white no-underline hover:text-white hover:no-underline py-2 inline-block" href="/">
+        Logo
+      </a>
+    </div>
+    <!-- Hamburger button (hidden on large screen) -->
+    <button type="button" class="block lg:hidden"
+      @click="isOpen = !isOpen"
+      :class="{ 'transition transform-180': isOpen }"
+    >
+      <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path x-show="isOpen" fill-rule="evenodd" clip-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
+        <path x-show="!isOpen" fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+      </svg>
+    </button>
+    <!--Menu-->
+    <div class="hidden lg:block"
+      :class="{ 'block w-full lg:w-fit flex-grow': isOpen, 'hidden': !isOpen }"
+      x-show.transition="true"
+    >
+      <ul class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center">
+        <li class="mr-3">
+          <a class="inline-block py-2 px-4 text-white no-underline" href="#" @click="isOpen = false">Active
+          </a>
+        </li>
+        <li class="mr-3">
+          <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#" @click="isOpen = false">link
+          </a>
+        </li>
+        <li class="mr-3">
+          <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#" @click="isOpen = false">link
+          </a>
+        </li>
+        <li class="mr-3">
+          <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#" @click="isOpen = false">link
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</body>
+</html>
